@@ -1,518 +1,4 @@
 
-// import React, { useState } from 'react';
-// import Web3 from 'web3';
-// import { CertificateRegistryABI } from '../abi/CertificateRegistryABI';
-
-// const contractAddress = '0xCA4dAc2bE9F5bF0865ec5Ed0de830045933D2b4D';
-// // const contractAddress = '0xf670fc0dd4a472aec3f77685439495ab2ff8cbdd';
-
-// function IssueCertificate() {
-//   const [studentName, setStudentName] = useState('');
-//   const [course, setCourse] = useState('');
-//   const [hash, setHash] = useState('');
-//   const [status, setStatus] = useState('');
-
-//   const handleSubmit = async (e) => {
-//     e.preventDefault();
-
-//     if (!window.ethereum) {
-//       alert("Please install MetaMask to continue.");
-//       return;
-//     }
-
-//     try {
-//       setStatus('🔌 Connecting to MetaMask...');
-//       const web3 = new Web3(window.ethereum);
-//       await window.ethereum.request({ method: 'eth_requestAccounts' });
-
-//       const accounts = await web3.eth.getAccounts();
-//       const account = accounts[0];
-
-//       const contract = new web3.eth.Contract(CertificateRegistryABI, contractAddress);
-
-//       const timestamp = Date.now().toString();
-//       const rawData = `${studentName}-${course}-${timestamp}`;
-//       const certHash = web3.utils.keccak256(rawData);
-//       setHash(certHash);
-
-//       setStatus('⏳ Sending transaction to issue certificate...');
-
-//       await contract.methods.issueCertificate(certHash, studentName, course)
-//         .send({ from: account });
-
-//       setStatus('✅ Certificate issued successfully!');
-//     } catch (error) {
-//       console.error(error);
-//       setStatus('❌ Error issuing certificate.');
-//     }
-//   };
-
-//   return (
-//     <div>
-//       <h2>Issue Certificate</h2>
-//       <form onSubmit={handleSubmit}>
-//         <input
-//           value={studentName}
-//           onChange={e => setStudentName(e.target.value)}
-//           placeholder="Student Name"
-//           required
-//         />
-//         <input
-//           value={course}
-//           onChange={e => setCourse(e.target.value)}
-//           placeholder="Course"
-//           required
-//         />
-//         <button type="submit">Issue Certificate</button>
-//       </form>
-//       {hash && <p><strong>Generated Hash:</strong> {hash}</p>}
-//       <p>{status}</p>
-//     </div>
-//   );
-// }
-
-// export default IssueCertificate;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// // import React, { useState } from 'react';
-// // import { ethers } from 'ethers';
-// // // import CertificateRegistryABI from '../abi/CertificateRegistry.json'; // Adjust if using named export
-// // import { CertificateRegistryABI } from '../abi/CertificateRegistryABI';
-// // const contractAddress = "0xCA4dAc2bE9F5bF0865ec5Ed0de830045933D2b4D";
-
-// // function IssueCertificate() {
-// //   const [studentName, setStudentName] = useState('');
-// //   const [course, setCourse] = useState('');
-// //   const [hash, setHash] = useState('');
-// //   const [status, setStatus] = useState('');
-
-// //   const handleSubmit = async (e) => {
-// //     e.preventDefault();
-
-// //     try {
-// //       const timestamp = Date.now().toString();
-// //       const rawData = `${studentName}-${course}-${timestamp}`;
-// //       const certHash = ethers.utils.keccak256(ethers.utils.toUtf8Bytes(rawData));
-// //       setHash(certHash);
-
-// //       setStatus('🦊 Connecting to wallet...');
-// //       if (!window.ethereum) throw new Error("No MetaMask detected");
-
-// //       const provider = new ethers.providers.Web3Provider(window.ethereum);
-// //       await provider.send("eth_requestAccounts", []);
-// //       const signer = provider.getSigner();
-
-// //       const contract = new ethers.Contract(contractAddress, CertificateRegistryABI, signer);
-
-// //       setStatus('⏳ Issuing certificate on-chain...');
-// //       const tx = await contract.issueCertificate(certHash, studentName, course);
-// //       await tx.wait();
-
-// //       setStatus('✅ Certificate issued successfully!');
-// //     } catch (err) {
-// //       console.error(err);
-// //       setStatus('❌ Failed to issue certificate: ' + err.message);
-// //     }
-// //   };
-
-// //   return (
-// //     <div>
-// //       <h2>🎓 Issue Certificate</h2>
-// //       <form onSubmit={handleSubmit}>
-// //         <input
-// //           value={studentName}
-// //           onChange={e => setStudentName(e.target.value)}
-// //           placeholder="Student Name"
-// //           required
-// //         />
-// //         <input
-// //           value={course}
-// //           onChange={e => setCourse(e.target.value)}
-// //           placeholder="Course"
-// //           required
-// //         />
-// //         <button type="submit">Issue Certificate</button>
-// //       </form>
-
-// //       {hash && <p><strong>🔒 Generated Hash:</strong> {hash}</p>}
-// //       <p>{status}</p>
-// //     </div>
-// //   );
-// // }
-
-// // export default IssueCertificate;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// // import React, { useState } from 'react';
-// // import { ethers } from 'ethers';
-
-// // import { CertificateRegistryABI } from '../abi/CertificateRegistryABI';
-// // // import CertificateRegistryABI from '../abis/CertificateRegistry.json'; // Adjust path
-
-// // const contractAddress = "0xCA4dAc2bE9F5bF0865ec5Ed0de830045933D2b4D";
-
-// // function IssueCertificate() {
-// //   const [studentName, setStudentName] = useState('');
-// //   const [course, setCourse] = useState('');
-// //   const [hash, setHash] = useState('');
-// //   const [status, setStatus] = useState('');
-
-// //   const handleSubmit = async (e) => {
-// //     e.preventDefault();
-
-// //     // Create a hash from studentName + course + timestamp
-// //     const timestamp = Date.now().toString();
-// //     const rawData = `${studentName}-${course}-${timestamp}`;
-// //     const certHash = ethers.utils.keccak256(ethers.utils.toUtf8Bytes(rawData));
-// //     setHash(certHash);
-
-// //     try {
-// //       setStatus('Connecting wallet...');
-// //       const provider = new ethers.BrowserProvider(window.ethereum);
-// //       const signer = await provider.getSigner();
-// //       const contract = new ethers.Contract(contractAddress, CertificateRegistryABI, signer);
-
-// //       setStatus('Issuing certificate...');
-// //       const tx = await contract.issueCertificate(certHash, studentName, course);
-// //       await tx.wait();
-// //       setStatus('✅ Certificate issued successfully!');
-// //     } catch (err) {
-// //       console.error(err);
-// //       setStatus('❌ Failed to issue certificate.');
-// //     }
-// //   };
-
-// //   return (
-// //     <div>
-// //       <h2>Issue Certificate</h2>
-// //       <form onSubmit={handleSubmit}>
-// //         <input value={studentName} onChange={e => setStudentName(e.target.value)} placeholder="Student Name" required />
-// //         <input value={course} onChange={e => setCourse(e.target.value)} placeholder="Course Name" required />
-// //         <button type="submit">Issue Certificate</button>
-// //       </form>
-// //       {hash && <p><strong>Generated Hash:</strong> {hash}</p>}
-// //       <p>{status}</p>
-// //     </div>
-// //   );
-// // }
-
-// // export default IssueCertificate;
-
-
-
-
-// import React, { useState } from 'react';
-// import Web3 from 'web3';
-// import { CertificateRegistryABI } from '../abi/CertificateRegistryABI';
-
-// const contractAddress = '0x2139e69391C23730DACB61f8f3Ee90e99fF8C956';
-
-// function IssueCertificate() {
-//   const [studentName, setStudentName] = useState('');
-//   const [course, setCourse] = useState('');
-//   const [hash, setHash] = useState('');
-//   const [status, setStatus] = useState('');
-
-//   const handleSubmit = async (e) => {
-//     e.preventDefault();
-
-//     if (!window.ethereum) {
-//       alert("Please install MetaMask to continue.");
-//       return;
-//     }
-
-//     try {
-//       setStatus('🔌 Connecting to MetaMask...');
-//       const web3 = new Web3(window.ethereum);
-//       await window.ethereum.request({ method: 'eth_requestAccounts' });
-
-//       const accounts = await web3.eth.getAccounts();
-//       const account = accounts[0];
-
-//       console.log('Connected account:', account);
-
-//       const contract = new web3.eth.Contract(CertificateRegistryABI, contractAddress);
-
-//       const timestamp = Date.now().toString();
-//       const rawData = `${studentName}-${course}-${timestamp}`;
-//       const certHash = web3.utils.keccak256(rawData);
-//       setHash(certHash);
-
-//       console.log('Generated parameters:', {
-//         certHash,
-//         studentName,
-//         course,
-//         account
-//       });
-
-//       setStatus('🔍 Validating transaction...');
-
-//       // First, test the transaction with call() to get the actual error
-//       try {
-//         await contract.methods.issueCertificate(certHash, studentName, course)
-//           .call({ from: account });
-//         console.log('✅ Call validation successful');
-//       } catch (callError) {
-//         console.error('❌ Call validation failed:', callError);
-        
-//         // Parse common error messages
-//         if (callError.message.includes('Not a registered school')) {
-//           setStatus('❌ Error: Account must be registered as a school to issue certificates');
-//           return;
-//         } else if (callError.message.includes('Only admin can do this')) {
-//           setStatus('❌ Error: Only admin can perform this action');
-//           return;
-//         } else if (callError.message.includes('Certificate already issued')) {
-//           setStatus('❌ Error: Certificate with this hash already exists');
-//           return;
-//         } else if (callError.message.includes('revert')) {
-//           setStatus(`❌ Contract Error: ${callError.message}`);
-//           return;
-//         } else {
-//           setStatus(`❌ Validation Error: ${callError.message}`);
-//           return;
-//         }
-//       }
-
-//       setStatus('⏳ Sending transaction to issue certificate...');
-
-//       // If call succeeds, proceed with the actual transaction
-//       const result = await contract.methods.issueCertificate(certHash, studentName, course)
-//         .send({ 
-//           from: account,
-//           gas: 200000, // Increased gas limit
-//           gasPrice: web3.utils.toWei('20', 'gwei')
-//         });
-
-//       console.log('Transaction result:', result);
-//       setStatus('✅ Certificate issued successfully!');
-      
-//       // Display transaction hash
-//       if (result.transactionHash) {
-//         setStatus(prev => prev + ` Transaction: ${result.transactionHash}`);
-//       }
-
-//     } catch (error) {
-//       console.error('Full error object:', error);
-      
-//       // Handle specific error types
-//       if (error.code === 4001) {
-//         setStatus('❌ Transaction rejected by user');
-//       } else if (error.message.includes('insufficient funds')) {
-//         setStatus('❌ Insufficient funds for transaction');
-//       } else if (error.message.includes('nonce too low')) {
-//         setStatus('❌ Transaction nonce error. Please try again');
-//       } else if (error.message.includes('gas')) {
-//         setStatus('❌ Gas estimation failed. Try increasing gas limit');
-//       } else {
-//         setStatus(`❌ Error: ${error.message || 'Unknown error occurred'}`);
-//       }
-//     }
-//   };
-
-//   // Function to check account permissions
-//   const checkPermissions = async () => {
-//     if (!window.ethereum) return;
-    
-//     try {
-//       const web3 = new Web3(window.ethereum);
-//       const accounts = await web3.eth.getAccounts();
-//       const account = accounts[0];
-//       const contract = new web3.eth.Contract(CertificateRegistryABI, contractAddress);
-      
-//       // Check if current account is admin
-//       const admin = await contract.methods.admin().call();
-//       const isAdmin = admin.toLowerCase() === account.toLowerCase();
-      
-//       // Check if current account is a registered school
-//       const isRegisteredSchool = await contract.methods.isRegisteredSchool(account).call();
-      
-//       console.log('=== ACCOUNT PERMISSIONS ===');
-//       console.log('Contract admin:', admin);
-//       console.log('Current account:', account);
-//       console.log('Is admin:', isAdmin);
-//       console.log('Is registered school:', isRegisteredSchool);
-//       console.log('=========================');
-      
-//       // Update status with permission info
-//       if (isAdmin) {
-//         setStatus('✅ Connected as Admin - You can register schools');
-//       } else if (isRegisteredSchool) {
-//         setStatus('✅ Connected as Registered School - You can issue certificates');
-//       } else {
-//         setStatus('❌ Account not authorized - Need to be admin or registered school');
-//       }
-      
-//     } catch (error) {
-//       console.error('Error checking permissions:', error);
-//       setStatus('❌ Error checking permissions');
-//     }
-//   };
-
-//   // Function to register current account as a school (only admin can do this)
-//   const registerAsSchool = async () => {
-//     if (!window.ethereum) return;
-    
-//     try {
-//       const web3 = new Web3(window.ethereum);
-//       const accounts = await web3.eth.getAccounts();
-//       const account = accounts[0];
-//       const contract = new web3.eth.Contract(CertificateRegistryABI, contractAddress);
-      
-//       setStatus('⏳ Registering account as school...');
-      
-//       await contract.methods.registerSchool(account)
-//         .send({ from: account, gas: 100000 });
-      
-//       setStatus('✅ Account registered as school successfully!');
-      
-//     } catch (error) {
-//       console.error('Error registering school:', error);
-//       if (error.message.includes('Only admin can do this')) {
-//         setStatus('❌ Only admin can register schools');
-//       } else {
-//         setStatus(`❌ Error registering school: ${error.message}`);
-//       }
-//     }
-//   };
-
-//   return (
-//     <div>
-//       <h2>Issue Certificate</h2>
-//       <form onSubmit={handleSubmit}>
-//         <input
-//           value={studentName}
-//           onChange={e => setStudentName(e.target.value)}
-//           placeholder="Student Name"
-//           required
-//         />
-//         <input
-//           value={course}
-//           onChange={e => setCourse(e.target.value)}
-//           placeholder="Course"
-//           required
-//         />
-//         <button type="submit">Issue Certificate</button>
-//       </form>
-      
-//       {/* Debug and Admin buttons */}
-//       <div style={{marginTop: '10px', display: 'flex', gap: '10px'}}>
-//         <button onClick={checkPermissions} style={{background: '#e3f2fd', padding: '8px 16px'}}>
-//           Check Permissions
-//         </button>
-//         <button onClick={registerAsSchool} style={{background: '#fff3e0', padding: '8px 16px'}}>
-//           Register as School (Admin only)
-//         </button>
-//       </div>
-      
-//       {hash && <p><strong>Generated Hash:</strong> {hash}</p>}
-//       <p>{status}</p>
-//     </div>
-//   );
-// }
-
-// export default IssueCertificate;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -525,7 +11,7 @@ import { CertificateRegistryABI } from '../abi/CertificateRegistryABI';
 import '../styles/IssueCertificate.css'
 
 // const contractAddress = ' 0x8B64E16c2ed3ef78A56216A1C7BBAd1b24407c5D';
-const contractAddress = '0xE4CA114c095BA550E91D7449263Ce6e2F52BAdC4';
+const contractAddress = '0x7c23623224C1E51EC005917F482933f78c6B3894';
 
 // QR Code generation function using HTML5 Canvas
 const generateQRCode = (text, size = 200) => {
@@ -619,26 +105,26 @@ function ImprovedIssueCertificate() {
   const handleSubmit = async () => {
     // Validation
     if (!studentName.trim()) {
-      setStatus('❌ Student name is required');
+      setStatus(' Student name is required');
       return;
     }
     if (!course.trim()) {
-      setStatus('❌ Course name is required');
+      setStatus(' Course name is required');
       return;
     }
     if (!institution.trim()) {
-      setStatus('❌ Institution name is required');
+      setStatus(' Institution name is required');
       return;
     }
     if (!issueDate) {
-      setStatus('❌ Issue date is required');
+      setStatus(' Issue date is required');
       return;
     }
     
     setIsLoading(true);
 
     if (!window.ethereum) {
-      setStatus('❌ Please install MetaMask to continue');
+      setStatus(' Please install MetaMask to continue');
       setIsLoading(false);
       return;
     }
@@ -677,30 +163,30 @@ function ImprovedIssueCertificate() {
       try {
         await contract.methods.issueCertificate(certHash, studentName, course)
           .call({ from: account });
-        console.log('✅ Transaction validation successful');
+        console.log('Transaction validation successful');
       } catch (callError) {
-        console.error('❌ Validation failed:', callError);
+        console.error('Validation failed:', callError);
         
         if (callError.message.includes('Not a registered school')) {
-          setStatus('❌ Error: Account must be registered as a school to issue certificates');
+          setStatus('Error: Account must be registered as a school to issue certificates');
           setIsLoading(false);
           return;
         } else if (callError.message.includes('Only admin can do this')) {
-          setStatus('❌ Error: Only admin can perform this action');
+          setStatus('Error: Only admin can perform this action');
           setIsLoading(false);
           return;
         } else if (callError.message.includes('Certificate already issued')) {
-          setStatus('❌ Error: Certificate with this hash already exists');
+          setStatus('Error: Certificate with this hash already exists');
           setIsLoading(false);
           return;
         } else {
-          setStatus(`❌ Validation Error: ${callError.message}`);
+          setStatus(`Validation Error: ${callError.message}`);
           setIsLoading(false);
           return;
         }
       }
 
-      setStatus('⏳ Broadcasting transaction to blockchain...');
+      setStatus('Broadcasting transaction to blockchain...');
 
       // Execute the actual transaction
       const gasEstimate = await contract.methods.issueCertificate(certHash, studentName, course)
@@ -721,21 +207,21 @@ function ImprovedIssueCertificate() {
       const qrCode = generateQRCode(verificationUrl, 200);
       setQrCodeData(qrCode);
 
-      setStatus('✅ Certificate issued successfully and recorded on blockchain!');
+      setStatus('Certificate issued successfully and recorded on blockchain!');
       
     } catch (error) {
       console.error('Transaction failed:', error);
       
       if (error.code === 4001) {
-        setStatus('❌ Transaction rejected by user');
+        setStatus('Transaction rejected by user');
       } else if (error.message.includes('insufficient funds')) {
-        setStatus('❌ Insufficient ETH balance for transaction fees');
+        setStatus('Insufficient ETH balance for transaction fees');
       } else if (error.message.includes('nonce too low')) {
-        setStatus('❌ Transaction nonce error. Please try again');
+        setStatus('Transaction nonce error. Please try again');
       } else if (error.message.includes('gas')) {
-        setStatus('❌ Gas estimation failed. Network might be congested');
+        setStatus('Gas estimation failed. Network might be congested');
       } else {
-        setStatus(`❌ Transaction Error: ${error.message || 'Unknown blockchain error'}`);
+        setStatus(`Transaction Error: ${error.message || 'Unknown blockchain error'}`);
       }
     } finally {
       setIsLoading(false);
@@ -744,17 +230,17 @@ function ImprovedIssueCertificate() {
 
   const checkPermissions = async () => {
     if (!window.ethereum) {
-      setStatus('❌ MetaMask not detected. Please install MetaMask');
+      setStatus(' MetaMask not detected. Please install MetaMask');
       return;
     }
     
     try {
-      setStatus('🔍 Checking account permissions...');
+      setStatus('Checking account permissions...');
       const web3 = new Web3(window.ethereum);
       const accounts = await web3.eth.getAccounts();
       
       if (accounts.length === 0) {
-        setStatus('❌ No accounts connected. Please connect MetaMask');
+        setStatus('No accounts connected. Please connect MetaMask');
         return;
       }
 
@@ -785,16 +271,16 @@ function ImprovedIssueCertificate() {
       console.log('=====================');
       
       if (isAdmin) {
-        setStatus('✅ Connected as Contract Admin - Full permissions');
+        setStatus('Connected as Contract Admin - Full permissions');
       } else if (isRegisteredSchool) {
-        setStatus('✅ Connected as Registered School - Can issue certificates');
+        setStatus('Connected as Registered School - Can issue certificates');
       } else {
-        setStatus('❌ Account not authorized - Contact admin for school registration');
+        setStatus('Account not authorized - Contact admin for school registration');
       }
       
     } catch (error) {
       console.error('Permission check failed:', error);
-      setStatus('❌ Error checking account permissions');
+      setStatus('Error checking account permissions');
     }
   };
 
@@ -849,7 +335,7 @@ function ImprovedIssueCertificate() {
 
     try {
       setIsLoading(true);
-      setStatus('⏳ Registering account as authorized school...');
+      setStatus('Registering account as authorized school...');
 
       const web3 = new Web3(window.ethereum);
       const accounts = await web3.eth.getAccounts();
@@ -867,7 +353,7 @@ function ImprovedIssueCertificate() {
       });
 
       console.log('School registration successful:', result);
-      setStatus('✅ Account successfully registered as authorized school!');
+      setStatus('Account successfully registered as authorized school!');
 
       // Refresh permissions
       setTimeout(() => checkPermissions(), 2000);
@@ -912,16 +398,16 @@ function ImprovedIssueCertificate() {
     link.click();
     document.body.removeChild(link);
     
-    setStatus('📥 QR code downloaded successfully');
+    setStatus('QR code downloaded successfully');
   };
 
   const copyHashToClipboard = () => {
     if (!hash) return;
     
     navigator.clipboard.writeText(hash).then(() => {
-      setStatus('📋 Certificate hash copied to clipboard');
+      setStatus('Certificate hash copied to clipboard');
     }).catch(() => {
-      setStatus('❌ Failed to copy hash to clipboard');
+      setStatus(' Failed to copy hash to clipboard');
     });
   };
 

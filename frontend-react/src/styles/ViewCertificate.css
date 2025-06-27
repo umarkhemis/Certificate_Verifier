@@ -2,6 +2,7 @@
 /* Certificate Viewer Styles */
 * {
   box-sizing: border-box;
+  /* margin-left: 50px */
 }
 
 body {
@@ -14,9 +15,10 @@ body {
   min-height: 100vh;
   margin: 0;
   padding: 20px;
-  align-items: center;
+  margin-left: 3px
+  /* align-items: center;
   align-content: center;
-  text-align: center;
+  text-align: center; */
 }
 
 .certificate-viewer {
@@ -71,7 +73,8 @@ body {
 .hash-input {
   width: 100%;
   padding: 16px 20px;
-  border: 2px solid #e5e7eb;
+  border: 2px solid #333537;
+  color: black
   border-radius: 12px;
   font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
   font-size: 14px;
@@ -82,12 +85,12 @@ body {
 .hash-input:focus {
   outline: none;
   border-color: #4f46e5;
-  background: white;
+  background: rgb(48, 44, 44);
   box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
 }
 
 .hash-input::placeholder {
-  color: #9ca3af;
+  color: #101111;
 }
 
 .button-group {
