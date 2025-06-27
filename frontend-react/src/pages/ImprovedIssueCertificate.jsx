@@ -284,50 +284,7 @@ function ImprovedIssueCertificate() {
     }
   };
 
-  // const registerAsSchool = async () => {
-  //   if (!window.ethereum) return;
-    
-  //   try {
-  //     setIsLoading(true);
-  //     setStatus('⏳ Registering account as authorized school...');
-      
-  //     const web3 = new Web3(window.ethereum);
-  //     const accounts = await web3.eth.getAccounts();
-  //     const account = accounts[0];
-  //     const contract = new web3.eth.Contract(CertificateRegistryABI, contractAddress);
-      
-  //     const gasEstimate = await contract.methods.registerSchool(account)
-  //       .estimateGas({ from: account });
-      
-  //     const result = await contract.methods.registerSchool(account)
-  //       .send({ 
-  //         from: account, 
-  //         // gas: Math.floor(gasEstimate * 1.2),
-  //         // const gasBuffer = BigInt(Math.floor(1.2 * 100)); 
-  //         // const adjustedGas = (BigInt(gasEstimate) * gasBuffer) / BigInt(100);
-  //         gasPrice: web3.utils.toWei('20', 'gwei')
-  //       });
-      
-  //     console.log('School registration successful:', result);
-  //     setStatus('✅ Account successfully registered as authorized school!');
-      
-  //     // Refresh permissions
-  //     setTimeout(() => checkPermissions(), 2000);
-      
-  //   } catch (error) {
-  //     console.error('School registration failed:', error);
-  //     if (error.message.includes('Only admin can do this')) {
-  //       setStatus('❌ Only contract admin can register new schools');
-  //     } else if (error.message.includes('Already registered')) {
-  //       setStatus('❌ Account is already registered as a school');
-  //     } else {
-  //       setStatus(`❌ Registration failed: ${error.message}`);
-  //     }
-  //   } finally {
-  //     setIsLoading(false);
-  //   }
-  // };
-
+ 
 
 
   const registerAsSchool = async () => {
